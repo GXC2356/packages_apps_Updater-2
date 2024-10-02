@@ -1,7 +1,7 @@
 import java.util.Properties
-import com.pixelstar.generatebp.GenerateBpPlugin
-import com.pixelstar.generatebp.GenerateBpPluginExtension
-import com.pixelstar.generatebp.models.Module
+import com.skylineui.generatebp.GenerateBpPlugin
+import com.skylineui.generatebp.GenerateBpPluginExtension
+import com.skylineui.generatebp.models.Module
 
 plugins {
     id("com.android.application")
@@ -18,7 +18,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.pixelstar:gradle-generatebp:+")
+        classpath("com.skylineui:gradle-generatebp:+")
     }
 }
 
@@ -33,7 +33,7 @@ android {
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.pixelstar.updater"
+        applicationId = "com.skylineui.updater"
         minSdk = 30
         targetSdk = 33
         versionCode = 1

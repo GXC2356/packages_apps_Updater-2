@@ -1,12 +1,12 @@
 #!/bin/sh
 
-updates_dir=/data/pixelstar_updates
+updates_dir=/data/skylineui_updates
 
 if [ ! -f "$1" ]; then
    echo "Usage: $0 ZIP [UNVERIFIED]"
    echo "Push ZIP to $updates_dir and add it to Updater"
    echo
-   echo "The name of ZIP is assumed to have pixelstar-VERSION-DATE-TYPE-* as format"
+   echo "The name of ZIP is assumed to have SkylineUI-BUILD_VERSION-PLATFORM_VERSION-CUSTOM_BUILD-CUSTOM_BUILD_DATE-CUSTOM_BUILD_TYPE.* as format"
    echo "If UNVERIFIED is set, the app will verify the update"
    exit
 fi
@@ -33,7 +33,7 @@ else
     status=2
 fi
 
-# Assume pixelstar-VERSION-DATE-TYPE-*.zip
+# Assume skylineui-VERSION-DATE-TYPE-*.zip
 zip_name=`basename "$zip_path"`
 id=`echo "$zip_name" | sha1sum | cut -d' ' -f1`
 version=`echo "$zip_name" | cut -d'-' -f2`
@@ -52,8 +52,8 @@ adb shell chgrp cache "$zip_path_device"
 adb shell chmod 664 "$zip_path_device"
 
 # Kill the app before updating the database
-adb shell "killall com.pixelstar.updater 2>/dev/null"
-adb shell "sqlite3 /data/data/com.pixelstar.updater/databases/updates.db" \
+adb shell "killall com.skylineui.updater 2>/dev/null"
+adb shell "sqlite3 /data/data/com.skylineui.updater/databases/updates.db" \
     "\"INSERT INTO updates (status, path, download_id, timestamp, type, version, size)" \
     "  VALUES ($status, '$zip_path_device', '$id', $timestamp, '$type', '$version', $size)\""
 
